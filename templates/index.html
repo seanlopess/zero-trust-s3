@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zero Trust File Upload</title>
+</head>
+<body>
+    <h1>Upload a File to S3</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Download a File from S3</h2>
+    <form onsubmit="event.preventDefault(); downloadFile();">
+        <input type="text" id="key" placeholder="Enter filename in S3" required>
+        <button type="submit">Download</button>
+    </form>
+
+    <script>
+        function downloadFile() {
+            const key = document.getElementById('key').value;
+            if (key) {
+                window.location.href = '/download/' + key;
+            }
+        }
+    </script>
+</body>
+</html>
